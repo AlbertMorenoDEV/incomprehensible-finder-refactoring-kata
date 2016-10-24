@@ -52,7 +52,7 @@ final class Finder
                     }
                     break;
 
-                case FindType::TWO:
+                case FindType::FURTHEST:
                     if ($result->d > $answer->d) {
                         $answer = $result;
                     }

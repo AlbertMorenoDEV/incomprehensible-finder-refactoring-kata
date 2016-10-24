@@ -7,5 +7,5 @@ namespace CodelyTV\FinderKata\Algorithm;
 interface FindType
 {
     const CLOSEST = 1;
-    const TWO = 2;
+    const FURTHEST = 2;
 }

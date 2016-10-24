@@ -89,7 +89,7 @@ final class FinderTest extends TestCase
         $list[] = $this->greg;
         $finder = new Finder($list);
 
-        $result = $finder->find(FindType::TWO);
+        $result = $finder->find(FindType::FURTHEST);
 
         $this->assertEquals($this->greg, $result->p1);
         $this->assertEquals($this->mike, $result->p2);
@@ -105,7 +105,7 @@ final class FinderTest extends TestCase
         $list[] = $this->greg;
         $finder = new Finder($list);
 
-        $result = $finder->find(FindType::TWO);
+        $result = $finder->find(FindType::FURTHEST);
 
         $this->assertEquals($this->sue, $result->p1);
         $this->assertEquals($this->sarah, $result->p2);
