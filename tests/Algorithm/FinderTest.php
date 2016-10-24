@@ -6,38 +6,38 @@ namespace CodelyTV\FinderKataTest\Algorithm;
 
 use CodelyTV\FinderKata\Algorithm\Finder;
 use CodelyTV\FinderKata\Algorithm\FindType;
-use CodelyTV\FinderKata\Algorithm\Thing;
+use CodelyTV\FinderKata\Algorithm\Person;
 use PHPUnit\Framework\TestCase;
 
 final class FinderTest extends TestCase
 {
-    /** @var Thing */
+    /** @var Person */
     private $sue;
 
-    /** @var Thing */
+    /** @var Person */
     private $greg;
 
-    /** @var Thing */
+    /** @var Person */
     private $sarah;
 
-    /** @var Thing */
+    /** @var Person */
     private $mike;
 
     protected function setUp()
     {
-        $this->sue            = new Thing();
+        $this->sue            = new Person();
         $this->sue->name      = "Sue";
         $this->sue->birthDate = new \DateTime("1950-01-01");
 
-        $this->greg            = new Thing();
+        $this->greg            = new Person();
         $this->greg->name      = "Greg";
         $this->greg->birthDate = new \DateTime("1952-05-01");
 
-        $this->sarah            = new Thing();
+        $this->sarah            = new Person();
         $this->sarah->name      = "Sarah";
         $this->sarah->birthDate = new \DateTime("1982-01-01");
 
-        $this->mike            = new Thing();
+        $this->mike            = new Person();
         $this->mike->name      = "Mike";
         $this->mike->birthDate = new \DateTime("1979-01-01");
     }
