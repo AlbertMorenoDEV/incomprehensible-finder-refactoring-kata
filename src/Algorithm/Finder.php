@@ -50,7 +50,8 @@ final class Finder
 
         for ($firstPersonPosition = 0; $firstPersonPosition < count($this->persons); $firstPersonPosition++) {
             for ($secondPersonPosition = $firstPersonPosition + 1; $secondPersonPosition < count($this->persons); $secondPersonPosition++) {
-                $results[] = $this->compare($this->persons[$firstPersonPosition], $this->persons[$secondPersonPosition]);
+                $results[] = $this->compare($this->persons[$firstPersonPosition],
+                    $this->persons[$secondPersonPosition]);
             }
         }
 
@@ -69,8 +70,7 @@ final class Finder
             $newResult->secondPerson = $firstPerson;
         }
 
-        $newResult->diference = $newResult->secondPerson->birthDate->getTimestamp()
-            - $newResult->firstPerson->birthDate->getTimestamp();
+        $newResult->diference = $newResult->secondPerson->birthDateDiference($newResult->firstPerson);
 
         return $newResult;
     }

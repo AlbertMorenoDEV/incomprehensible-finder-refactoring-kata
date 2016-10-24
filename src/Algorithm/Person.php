@@ -38,4 +38,9 @@ final class Person
     {
         return ($this->birthDate < $person->birthDate);
     }
+
+    public function birthDateDiference(Person $person) : int
+    {
+        return $this->birthDate->getTimestamp() - $person->birthDate->getTimestamp();
+    }
 }
