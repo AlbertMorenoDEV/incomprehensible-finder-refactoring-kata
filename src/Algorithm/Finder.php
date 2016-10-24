@@ -18,7 +18,7 @@ final class Finder
     {
         $results = $this->compareAll();
 
-        return $this->getAnswer($findType, $results);
+        return $this->getResult($findType, $results);
     }
 
     private function compareAll()
@@ -53,7 +53,7 @@ final class Finder
         return $newResult;
     }
 
-    private function getAnswer(int $findType, $results) : Result
+    private function getResult(int $findType, $results) : Result
     {
         if (count($results) < 1) {
             return new Result();
