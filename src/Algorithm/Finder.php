@@ -24,15 +24,15 @@ final class Finder
                 $r = new Result();
 
                 if ($this->_p[$i]->birthDate < $this->_p[$j]->birthDate) {
-                    $r->p1 = $this->_p[$i];
-                    $r->p2 = $this->_p[$j];
+                    $r->firstPerson = $this->_p[$i];
+                    $r->SecondPerson = $this->_p[$j];
                 } else {
-                    $r->p1 = $this->_p[$j];
-                    $r->p2 = $this->_p[$i];
+                    $r->firstPerson = $this->_p[$j];
+                    $r->SecondPerson = $this->_p[$i];
                 }
 
-                $r->d = $r->p2->birthDate->getTimestamp()
-                    - $r->p1->birthDate->getTimestamp();
+                $r->diference = $r->SecondPerson->birthDate->getTimestamp()
+                    - $r->firstPerson->birthDate->getTimestamp();
 
                 $tr[] = $r;
             }
@@ -47,13 +47,13 @@ final class Finder
         foreach ($tr as $result) {
             switch ($ft) {
                 case FindType::CLOSEST:
-                    if ($result->d < $answer->d) {
+                    if ($result->diference < $answer->diference) {
                         $answer = $result;
                     }
                     break;
 
                 case FindType::FURTHEST:
-                    if ($result->d > $answer->d) {
+                    if ($result->diference > $answer->diference) {
                         $answer = $result;
                     }
                     break;
