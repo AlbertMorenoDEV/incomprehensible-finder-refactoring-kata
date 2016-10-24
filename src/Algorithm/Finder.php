@@ -25,18 +25,16 @@ final class Finder
         $answer = $results[0];
 
         foreach ($results as $result) {
-            switch ($findType) {
-                case FindType::CLOSEST:
-                    if ($result->diference < $answer->diference) {
-                        $answer = $result;
-                    }
-                    break;
-
-                case FindType::FURTHEST:
-                    if ($result->diference > $answer->diference) {
-                        $answer = $result;
-                    }
-                    break;
+            if ($findType == FindType::CLOSEST) {
+                if ($result->diference < $answer->diference) {
+                    $answer = $result;
+                }
+            } elseif ($findType == FindType::FURTHEST) {
+                if ($result->diference > $answer->diference) {
+                    $answer = $result;
+                }
+            } else {
+                throw new \InvalidArgumentException("Invalid find type: {$findType}.");
             }
         }
 
