@@ -46,13 +46,13 @@ final class Finder
 
         foreach ($tr as $result) {
             switch ($ft) {
-                case FT::ONE:
+                case FindType::ONE:
                     if ($result->d < $answer->d) {
                         $answer = $result;
                     }
                     break;
 
-                case FT::TWO:
+                case FindType::TWO:
                     if ($result->d > $answer->d) {
                         $answer = $result;
                     }
