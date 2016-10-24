@@ -26,10 +26,11 @@ final class Finder
         /** @var Result[] $results */
         $results = [];
 
-        for ($firstPersonPosition = 0; $firstPersonPosition < count($this->persons); $firstPersonPosition++) {
-            for ($secondPersonPosition = $firstPersonPosition + 1; $secondPersonPosition < count($this->persons); $secondPersonPosition++) {
-                $results[] = $this->compare($this->persons[$firstPersonPosition],
-                    $this->persons[$secondPersonPosition]);
+        $numberOfPersons = count($this->persons);
+
+        for ($i = 0; $i < $numberOfPersons; $i++) {
+            for ($j = $i + 1; $j < $numberOfPersons; $j++) {
+                $results[] = $this->compare($this->persons[$i], $this->persons[$j]);
             }
         }
 
