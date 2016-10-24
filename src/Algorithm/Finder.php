@@ -22,23 +22,7 @@ final class Finder
             return new Result();
         }
 
-        $answer = $results[0];
-
-        foreach ($results as $result) {
-            if ($findType == FindType::CLOSEST) {
-                if ($result->diference < $answer->diference) {
-                    $answer = $result;
-                }
-            } elseif ($findType == FindType::FURTHEST) {
-                if ($result->diference > $answer->diference) {
-                    $answer = $result;
-                }
-            } else {
-                throw new \InvalidArgumentException("Invalid find type: {$findType}.");
-            }
-        }
-
-        return $answer;
+        return $this->getAnswer($findType, $results);
     }
 
     private function compareAll()
@@ -71,5 +55,26 @@ final class Finder
         $newResult->diference = $newResult->secondPerson->birthDateDiference($newResult->firstPerson);
 
         return $newResult;
+    }
+
+    private function getAnswer(int $findType, $results)
+    {
+        $answer = $results[0];
+
+        foreach ($results as $result) {
+            if ($findType == FindType::CLOSEST) {
+                if ($result->diference < $answer->diference) {
+                    $answer = $result;
+                }
+            } elseif ($findType == FindType::FURTHEST) {
+                if ($result->diference > $answer->diference) {
+                    $answer = $result;
+                }
+            } else {
+                throw new \InvalidArgumentException("Invalid find type: {$findType}.");
+            }
+        }
+
+        return $answer;
     }
 }
