@@ -50,23 +50,28 @@ final class Finder
 
         for ($firstPerson = 0; $firstPerson < count($this->persons); $firstPerson++) {
             for ($secondPerson = $firstPerson + 1; $secondPerson < count($this->persons); $secondPerson++) {
-                $newResult = new Result();
-
-                if ($this->persons[$firstPerson]->isOlderThan($this->persons[$secondPerson])) {
-                    $newResult->firstPerson = $this->persons[$firstPerson];
-                    $newResult->secondPerson = $this->persons[$secondPerson];
-                } else {
-                    $newResult->firstPerson = $this->persons[$secondPerson];
-                    $newResult->secondPerson = $this->persons[$firstPerson];
-                }
-
-                $newResult->diference = $newResult->secondPerson->birthDate->getTimestamp()
-                    - $newResult->firstPerson->birthDate->getTimestamp();
-
-                $results[] = $newResult;
+                $results[] = $this->compare($this->persons[$firstPerson], $this->persons[$secondPerson]);
             }
         }
 
         return $results;
+    }
+
+    private function compare(Person $firstPerson, Person $secondPerson) : Result
+    {
+        $newResult = new Result();
+
+        if ($firstPerson->isOlderThan($secondPerson)) {
+            $newResult->firstPerson = $firstPerson;
+            $newResult->secondPerson = $secondPerson;
+        } else {
+            $newResult->firstPerson = $secondPerson;
+            $newResult->secondPerson = $firstPerson;
+        }
+
+        $newResult->diference = $newResult->secondPerson->birthDate->getTimestamp()
+            - $newResult->firstPerson->birthDate->getTimestamp();
+
+        return $newResult;
     }
 }
