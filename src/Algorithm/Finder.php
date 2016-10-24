@@ -16,27 +16,7 @@ final class Finder
 
     public function find(int $findType): Result
     {
-        /** @var Result[] $results */
-        $results = [];
-
-        for ($firstPerson = 0; $firstPerson < count($this->persons); $firstPerson++) {
-            for ($secondPerson = $firstPerson + 1; $secondPerson < count($this->persons); $secondPerson++) {
-                $newResult = new Result();
-
-                if ($this->persons[$firstPerson]->isOlderThan($this->persons[$secondPerson])) {
-                    $newResult->firstPerson = $this->persons[$firstPerson];
-                    $newResult->secondPerson = $this->persons[$secondPerson];
-                } else {
-                    $newResult->firstPerson = $this->persons[$secondPerson];
-                    $newResult->secondPerson = $this->persons[$firstPerson];
-                }
-
-                $newResult->diference = $newResult->secondPerson->birthDate->getTimestamp()
-                    - $newResult->firstPerson->birthDate->getTimestamp();
-
-                $results[] = $newResult;
-            }
-        }
+        $results = $this->compareAll();
 
         if (count($results) < 1) {
             return new Result();
@@ -61,5 +41,32 @@ final class Finder
         }
 
         return $answer;
+    }
+
+    private function compareAll()
+    {
+        /** @var Result[] $results */
+        $results = [];
+
+        for ($firstPerson = 0; $firstPerson < count($this->persons); $firstPerson++) {
+            for ($secondPerson = $firstPerson + 1; $secondPerson < count($this->persons); $secondPerson++) {
+                $newResult = new Result();
+
+                if ($this->persons[$firstPerson]->isOlderThan($this->persons[$secondPerson])) {
+                    $newResult->firstPerson = $this->persons[$firstPerson];
+                    $newResult->secondPerson = $this->persons[$secondPerson];
+                } else {
+                    $newResult->firstPerson = $this->persons[$secondPerson];
+                    $newResult->secondPerson = $this->persons[$firstPerson];
+                }
+
+                $newResult->diference = $newResult->secondPerson->birthDate->getTimestamp()
+                    - $newResult->firstPerson->birthDate->getTimestamp();
+
+                $results[] = $newResult;
+            }
+        }
+
+        return $results;
     }
 }
