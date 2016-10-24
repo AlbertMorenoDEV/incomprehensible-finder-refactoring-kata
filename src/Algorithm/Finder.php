@@ -25,13 +25,13 @@ final class Finder
 
                 if ($this->persons[$firstPerson]->isOlderThan($this->persons[$secondPerson])) {
                     $newResult->firstPerson = $this->persons[$firstPerson];
-                    $newResult->SecondPerson = $this->persons[$secondPerson];
+                    $newResult->secondPerson = $this->persons[$secondPerson];
                 } else {
                     $newResult->firstPerson = $this->persons[$secondPerson];
-                    $newResult->SecondPerson = $this->persons[$firstPerson];
+                    $newResult->secondPerson = $this->persons[$firstPerson];
                 }
 
-                $newResult->diference = $newResult->SecondPerson->birthDate->getTimestamp()
+                $newResult->diference = $newResult->secondPerson->birthDate->getTimestamp()
                     - $newResult->firstPerson->birthDate->getTimestamp();
 
                 $results[] = $newResult;

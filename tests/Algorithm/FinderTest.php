@@ -51,7 +51,7 @@ final class FinderTest extends TestCase
         $result = $finder->find(FindType::CLOSEST);
 
         $this->assertEquals(null, $result->firstPerson);
-        $this->assertEquals(null, $result->SecondPerson);
+        $this->assertEquals(null, $result->secondPerson);
     }
 
     /** @test */
@@ -64,7 +64,7 @@ final class FinderTest extends TestCase
         $result = $finder->find(FindType::CLOSEST);
 
         $this->assertEquals(null, $result->firstPerson);
-        $this->assertEquals(null, $result->SecondPerson);
+        $this->assertEquals(null, $result->secondPerson);
     }
 
     /** @test */
@@ -78,7 +78,7 @@ final class FinderTest extends TestCase
         $result = $finder->find(FindType::CLOSEST);
 
         $this->assertEquals($this->sue, $result->firstPerson);
-        $this->assertEquals($this->greg, $result->SecondPerson);
+        $this->assertEquals($this->greg, $result->secondPerson);
     }
 
     /** @test */
@@ -92,7 +92,7 @@ final class FinderTest extends TestCase
         $result = $finder->find(FindType::FURTHEST);
 
         $this->assertEquals($this->greg, $result->firstPerson);
-        $this->assertEquals($this->mike, $result->SecondPerson);
+        $this->assertEquals($this->mike, $result->secondPerson);
     }
 
     /** @test */
@@ -108,7 +108,7 @@ final class FinderTest extends TestCase
         $result = $finder->find(FindType::FURTHEST);
 
         $this->assertEquals($this->sue, $result->firstPerson);
-        $this->assertEquals($this->sarah, $result->SecondPerson);
+        $this->assertEquals($this->sarah, $result->secondPerson);
     }
 
     /**
@@ -126,6 +126,6 @@ final class FinderTest extends TestCase
         $result = $finder->find(FindType::CLOSEST);
 
         $this->assertEquals($this->sue, $result->firstPerson);
-        $this->assertEquals($this->greg, $result->SecondPerson);
+        $this->assertEquals($this->greg, $result->secondPerson);
     }
 }

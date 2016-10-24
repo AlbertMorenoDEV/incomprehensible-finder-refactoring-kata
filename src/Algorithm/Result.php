@@ -10,7 +10,7 @@ final class Result
     public $firstPerson;
 
     /** @var Person */
-    public $SecondPerson;
+    public $secondPerson;
 
     /** @var int */
     public $diference;
