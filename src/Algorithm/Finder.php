@@ -46,7 +46,7 @@ final class Finder
 
         foreach ($tr as $result) {
             switch ($ft) {
-                case FindType::ONE:
+                case FindType::CLOSEST:
                     if ($result->d < $answer->d) {
                         $answer = $result;
                     }

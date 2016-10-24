@@ -6,6 +6,6 @@ namespace CodelyTV\FinderKata\Algorithm;
 
 interface FindType
 {
-    const ONE = 1;
+    const CLOSEST = 1;
     const TWO = 2;
 }

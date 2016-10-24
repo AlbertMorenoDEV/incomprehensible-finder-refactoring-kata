@@ -48,7 +48,7 @@ final class FinderTest extends TestCase
         $list   = [];
         $finder = new Finder($list);
 
-        $result = $finder->find(FindType::ONE);
+        $result = $finder->find(FindType::CLOSEST);
 
         $this->assertEquals(null, $result->p1);
         $this->assertEquals(null, $result->p2);
@@ -61,7 +61,7 @@ final class FinderTest extends TestCase
         $list[] = $this->sue;
         $finder = new Finder($list);
 
-        $result = $finder->find(FindType::ONE);
+        $result = $finder->find(FindType::CLOSEST);
 
         $this->assertEquals(null, $result->p1);
         $this->assertEquals(null, $result->p2);
@@ -75,7 +75,7 @@ final class FinderTest extends TestCase
         $list[] = $this->greg;
         $finder = new Finder($list);
 
-        $result = $finder->find(FindType::ONE);
+        $result = $finder->find(FindType::CLOSEST);
 
         $this->assertEquals($this->sue, $result->p1);
         $this->assertEquals($this->greg, $result->p2);
@@ -123,7 +123,7 @@ final class FinderTest extends TestCase
         $list[] = $this->greg;
         $finder = new Finder($list);
 
-        $result = $finder->find(FindType::ONE);
+        $result = $finder->find(FindType::CLOSEST);
 
         $this->assertEquals($this->sue, $result->p1);
         $this->assertEquals($this->greg, $result->p2);
