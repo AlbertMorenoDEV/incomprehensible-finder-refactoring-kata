@@ -23,7 +23,7 @@ final class Finder
             for ($secondPerson = $firstPerson + 1; $secondPerson < count($this->persons); $secondPerson++) {
                 $newResult = new Result();
 
-                if ($this->persons[$firstPerson]->birthDate < $this->persons[$secondPerson]->birthDate) {
+                if ($this->persons[$firstPerson]->isOlderThan($this->persons[$secondPerson])) {
                     $newResult->firstPerson = $this->persons[$firstPerson];
                     $newResult->SecondPerson = $this->persons[$secondPerson];
                 } else {

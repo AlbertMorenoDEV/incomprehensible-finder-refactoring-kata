@@ -33,4 +33,9 @@ final class Person
     {
         $this->birthDate = $birthDate;
     }
+
+    public function isOlderThan(Person $person) : bool
+    {
+        return ($this->birthDate < $person->birthDate);
+    }
 }
