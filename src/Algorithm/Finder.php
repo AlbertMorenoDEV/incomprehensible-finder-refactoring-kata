@@ -18,10 +18,6 @@ final class Finder
     {
         $results = $this->compareAll();
 
-        if (count($results) < 1) {
-            return new Result();
-        }
-
         return $this->getAnswer($findType, $results);
     }
 
@@ -57,21 +53,43 @@ final class Finder
         return $newResult;
     }
 
-    private function getAnswer(int $findType, $results)
+    private function getAnswer(int $findType, $results) : Result
+    {
+        if (count($results) < 1) {
+            return new Result();
+        }
+
+        if ($findType == FindType::CLOSEST) {
+            return $this->getClosest($results);
+        }
+
+        if ($findType == FindType::FURTHEST) {
+            return $this->getFurthest($results);
+        }
+
+        throw new \InvalidArgumentException("Invalid find type: {$findType}.");
+    }
+
+    private function getClosest($results) : Result
     {
         $answer = $results[0];
 
         foreach ($results as $result) {
-            if ($findType == FindType::CLOSEST) {
-                if ($result->diference < $answer->diference) {
-                    $answer = $result;
-                }
-            } elseif ($findType == FindType::FURTHEST) {
-                if ($result->diference > $answer->diference) {
-                    $answer = $result;
-                }
-            } else {
-                throw new \InvalidArgumentException("Invalid find type: {$findType}.");
+            if ($result->diference < $answer->diference) {
+                $answer = $result;
+            }
+        }
+
+        return $answer;
+    }
+
+    private function getFurthest($results) : Result
+    {
+        $answer = $results[0];
+
+        foreach ($results as $result) {
+            if ($result->diference > $answer->diference) {
+                $answer = $result;
             }
         }
 
