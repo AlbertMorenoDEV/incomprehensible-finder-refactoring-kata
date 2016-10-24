@@ -14,14 +14,14 @@ final class Finder
         $this->_p = $p;
     }
 
-    public function find(int $ft): F
+    public function find(int $ft): Result
     {
-        /** @var F[] $tr */
+        /** @var Result[] $tr */
         $tr = [];
 
         for ($i = 0; $i < count($this->_p); $i++) {
             for ($j = $i + 1; $j < count($this->_p); $j++) {
-                $r = new F();
+                $r = new Result();
 
                 if ($this->_p[$i]->birthDate < $this->_p[$j]->birthDate) {
                     $r->p1 = $this->_p[$i];
@@ -39,7 +39,7 @@ final class Finder
         }
 
         if (count($tr) < 1) {
-            return new F();
+            return new Result();
         }
 
         $answer = $tr[0];
