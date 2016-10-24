@@ -7,45 +7,45 @@ namespace CodelyTV\FinderKata\Algorithm;
 final class Finder
 {
     /** @var Person[] */
-    private $_p;
+    private $persons;
 
-    public function __construct(array $p)
+    public function __construct(array $persons)
     {
-        $this->_p = $p;
+        $this->persons = $persons;
     }
 
-    public function find(int $ft): Result
+    public function find(int $findType): Result
     {
-        /** @var Result[] $tr */
-        $tr = [];
+        /** @var Result[] $results */
+        $results = [];
 
-        for ($i = 0; $i < count($this->_p); $i++) {
-            for ($j = $i + 1; $j < count($this->_p); $j++) {
-                $r = new Result();
+        for ($firstPerson = 0; $firstPerson < count($this->persons); $firstPerson++) {
+            for ($secondPerson = $firstPerson + 1; $secondPerson < count($this->persons); $secondPerson++) {
+                $newResult = new Result();
 
-                if ($this->_p[$i]->birthDate < $this->_p[$j]->birthDate) {
-                    $r->firstPerson = $this->_p[$i];
-                    $r->SecondPerson = $this->_p[$j];
+                if ($this->persons[$firstPerson]->birthDate < $this->persons[$secondPerson]->birthDate) {
+                    $newResult->firstPerson = $this->persons[$firstPerson];
+                    $newResult->SecondPerson = $this->persons[$secondPerson];
                 } else {
-                    $r->firstPerson = $this->_p[$j];
-                    $r->SecondPerson = $this->_p[$i];
+                    $newResult->firstPerson = $this->persons[$secondPerson];
+                    $newResult->SecondPerson = $this->persons[$firstPerson];
                 }
 
-                $r->diference = $r->SecondPerson->birthDate->getTimestamp()
-                    - $r->firstPerson->birthDate->getTimestamp();
+                $newResult->diference = $newResult->SecondPerson->birthDate->getTimestamp()
+                    - $newResult->firstPerson->birthDate->getTimestamp();
 
-                $tr[] = $r;
+                $results[] = $newResult;
             }
         }
 
-        if (count($tr) < 1) {
+        if (count($results) < 1) {
             return new Result();
         }
 
-        $answer = $tr[0];
+        $answer = $results[0];
 
-        foreach ($tr as $result) {
-            switch ($ft) {
+        foreach ($results as $result) {
+            switch ($findType) {
                 case FindType::CLOSEST:
                     if ($result->diference < $answer->diference) {
                         $answer = $result;
